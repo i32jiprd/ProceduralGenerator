@@ -1,9 +1,13 @@
-package entities;
+package entities.dungeon;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+
+import entities.Entity;
+import entities.Item;
+import entities.Monster;
 
 public class Dungeon {
 
@@ -35,8 +39,10 @@ public class Dungeon {
 	private int size;
 	private DungeonType type;
 	private long gold;
-	private List<Item> items = new ArrayList<>();
+	// private List<Item> items = new ArrayList<>();
 	private Entity boss;
+
+	private List<Level> levels = new ArrayList<>();
 
 	public Dungeon() {
 	}
@@ -65,13 +71,13 @@ public class Dungeon {
 		this.gold = gold;
 	}
 
-	public List<Item> getItems() {
-		return items;
-	}
-
-	public void setItems(List<Item> items) {
-		this.items = items;
-	}
+	// public List<Item> getItems() {
+	// return items;
+	// }
+	//
+	// public void setItems(List<Item> items) {
+	// this.items = items;
+	// }
 
 	public Entity getBoss() {
 		return boss;
@@ -113,6 +119,10 @@ public class Dungeon {
 		this.type = type;
 	}
 
+	public List<Level> getLevels() {
+		return levels;
+	}
+
 	public String getName() {
 		return namePartA + " " + namePartB + " " + namePartC;
 	}
@@ -124,7 +134,13 @@ public class Dungeon {
 		stringBuilder.append("\n Type: " + getType());
 		stringBuilder.append("\n Gold: " + getGold());
 		stringBuilder.append("\n Boss: " + getBoss());
-		stringBuilder.append("\n Items: " + getItems());
+		// stringBuilder.append("\n Items: " + getItems());
+
+		stringBuilder.append("\n Levels: " + getLevels().size());
+		for (final Level level : getLevels()) {
+			stringBuilder.append("\n Boss: " + level.toString());
+		}
+
 		return stringBuilder.toString();
 	}
 
@@ -148,7 +164,9 @@ public class Dungeon {
 
 		dungeon.setBoss(Monster.createMonster());
 
-		dungeon.getItems().add(Item.createItem());
+		// dungeon.getItems().add(Item.createItem());
+
+		dungeon.getLevels().add(Level.createLevel());
 
 		return dungeon;
 	}
